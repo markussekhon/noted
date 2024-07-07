@@ -1,2 +1,5 @@
 # noted
-sticky note like app for arch linux
+
+A "sticky note" like app.
+
+Building it to be extremely basic with very limited functionality, and using python w/ tkinter.
