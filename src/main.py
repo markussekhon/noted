@@ -7,27 +7,20 @@ class NotedApp:
         self.root.title("noted")
         self.root.geometry("400x400")
 
-        menuframe = tk.Frame(self.root, bg="lightgrey", height=40)
-        menuframe.pack(side=tk.TOP, fill=tk.X)
-
-        save = tk.Button(menuframe, text="save", command=self.saveNote)
-        save.pack(side=tk.LEFT, padx=5, pady=5)
-        load = tk.Button(menuframe, text="load", command=self.loadNote)
-        load.pack(side=tk.LEFT, padx=4, pady=5)
+        self.root.bind('<Control-s>', self.saveNote)
+        self.root.bind('<Control-o>', self.loadNote)
 
         self.text = tk.Text(self.root, wrap=tk.WORD, bg="black", fg="white")
         self.text.pack(expand=True,fill=tk.BOTH)
 
-
-
-    def saveNote(self):
+    def saveNote(self, event):
         filepath = filedialog.asksaveasfilename(defaultextension=".txt", filetypes=[("Text files", "*.txt")])
 
         if filepath:
             with open(filepath, "w") as file:
                 file.write(self.text.get(1.0, tk.END))
 
-    def loadNote(self):
+    def loadNote(self, event):
         filepath = filedialog.askopenfilename(filetypes=[("Text files","*.txt")])
 
         if filepath:
